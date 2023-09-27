@@ -1,4 +1,4 @@
-package it.polito.tdp.libretto;
+package it.polito.tdp.libretto; //App.java è la classe main
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -8,25 +8,31 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import it.polito.tdp.libretto.model.Libretto;
+
 /**
  * JavaFX App
  */
 public class App extends Application {
 
-    @Override
-    public void start(Stage stage) throws IOException {
-    	
-    	FXMLLoader loader = new FXMLLoader(App.class.getResource("main.fxml")) ;
-    	Parent root = loader.load();
-    	Scene scene = new Scene(root) ;
+	@Override
+	public void start(Stage stage) throws IOException {
 
-    	stage.setScene(scene);
-        stage.show();
-        //commento nuovo
-    }
+		FXMLLoader loader = new FXMLLoader(App.class.getResource("main.fxml"));
+		Parent root = loader.load();
+		Scene scene = new Scene(root);
 
-    public static void main(String[] args) {
-        launch();
-    }
+		Libretto model = new Libretto();
+		Controller controller = loader.getController();
+		controller.setModel(model);
+
+		stage.setScene(scene);
+		stage.show();
+
+	}
+
+	public static void main(String[] args) {
+		launch();
+	}
 
 }
